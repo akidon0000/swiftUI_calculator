@@ -1,8 +1,8 @@
 //
 //  swiftUI_calculatorUITests.swift
-//  swiftUI_calculatorUITests
+//  swiftUI-calculatorUITests
 //
-//  Created by Akihiro Matsuyama on 2023/05/30.
+//  Created by Bando Takuya on 2023/05/30.
 //
 
 import XCTest

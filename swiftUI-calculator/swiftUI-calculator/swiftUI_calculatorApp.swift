@@ -1,8 +1,8 @@
 //
 //  swiftUI_calculatorApp.swift
-//  swiftUI_calculator
+//  swiftUI-calculator
 //
-//  Created by Akihiro Matsuyama on 2023/05/30.
+//  Created by Bando Takuya on 2023/05/30.
 //
 
 import SwiftUI
