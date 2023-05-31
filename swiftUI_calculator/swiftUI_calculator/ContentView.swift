@@ -65,12 +65,11 @@ struct ContentView: View {
             Spacer()
             LazyVGrid(columns: columns, spacing: 30) {
                 ForEach((0..<inputItem.count), id: \.self) { index in
-                    let item = inputItem[index]
-                    Text(item.displayName)
+                    Text(inputItem[index].displayName)
                         .frame(width: 60, height: 60)
                         .background(Color.yellow)
                         .onTapGesture {
-                            calculationFor(item)
+                            calculationFor(item: inputItem[index])
                         }
                 }
             }
@@ -78,7 +77,7 @@ struct ContentView: View {
         }
     }
     
-    func calculationFor(_ item: CalcButton) {
+    func calculationFor(item: CalcButton) {
         switch item.funcType {
         case .number:
             self.resultScreen += item.displayName
