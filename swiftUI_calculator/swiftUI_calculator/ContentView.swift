@@ -28,7 +28,7 @@ struct CalcButton {
 }
 
 struct ContentView: View {
-    @State var resultScreen = "test" // Textの内容を保存する変数
+    @State var resultScreen = "test"
     
     let inputItem = [CalcButton(displayName: "9", funcType: .number, number: 9),
                      CalcButton(displayName: "8", funcType: .number, number: 8),
@@ -46,11 +46,10 @@ struct ContentView: View {
                      CalcButton(displayName: "-", funcType: .symbol, symbolType: .minus),
                      
                      CalcButton(displayName: "0", funcType: .number, number: 0),
-                     CalcButton(displayName: "C", funcType: .number, symbolType: .clear),
-                     CalcButton(displayName: "=", funcType: .number, symbolType: .equal),
+                     CalcButton(displayName: "C", funcType: .symbol, symbolType: .clear),
+                     CalcButton(displayName: "=", funcType: .symbol, symbolType: .equal),
                      CalcButton(displayName: "+", funcType: .symbol, symbolType: .plus)]
     
-    // グリッドレイアウトの定義
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -61,18 +60,46 @@ struct ContentView: View {
     var body: some View {
         VStack{
             Spacer()
-            Text(resultScreen) // ボタン入力のモニター
+            Text(resultScreen)
                 .font(.largeTitle)
             Spacer()
             LazyVGrid(columns: columns, spacing: 30) {
                 ForEach((0..<inputItem.count), id: \.self) { index in
-                    // それぞれの要素はTextとします
-                    Text(inputItem[index].displayName)
+                    let item = inputItem[index]
+                    Text(item.displayName)
                         .frame(width: 60, height: 60)
                         .background(Color.yellow)
+                        .onTapGesture {
+                            calculationFor(item)
+                        }
                 }
             }
             .padding()
+        }
+    }
+    
+    func calculationFor(_ item: CalcButton) {
+        switch item.funcType {
+        case .number:
+            self.resultScreen += item.displayName
+        case .symbol:
+            
+            switch item.symbolType {
+            case .plus:
+                self.resultScreen += item.displayName
+            case .minus:
+                self.resultScreen += item.displayName
+            case .times:
+                self.resultScreen += item.displayName
+            case .divide:
+                self.resultScreen += item.displayName
+            case.equal:
+                self.resultScreen += item.displayName
+            case.clear:
+                self.resultScreen = ""
+            case .none:
+                fatalError()
+            }
         }
     }
 }
