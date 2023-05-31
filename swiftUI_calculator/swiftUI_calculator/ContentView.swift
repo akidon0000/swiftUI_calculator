@@ -10,6 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @State var resultScreen = "test" // Textの内容を保存する変数
     
+    let inputItem = ["9","8","7","÷",
+                    "6","5","4","×",
+                    "3","2","1","-",
+                    "0","C","=","+"]
+    
     // グリッドレイアウトの定義
     let columns = [
         GridItem(.flexible()),
@@ -25,9 +30,9 @@ struct ContentView: View {
                 .font(.largeTitle)
             Spacer()
             LazyVGrid(columns: columns, spacing: 30) {
-                ForEach((1...20), id: \.self) { index in
+                ForEach((0..<inputItem.count), id: \.self) { index in
                     // それぞれの要素はTextとします
-                    Text("Item \(index)")
+                    Text(inputItem[index])
                         .frame(width: 60, height: 60)
                         .background(Color.yellow)
                 }
